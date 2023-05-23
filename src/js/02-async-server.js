@@ -89,12 +89,13 @@ function getLightbox() {
 }
 
 //! Infinite scroll
-// function handleScroll() {
-//   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+function handleScroll() {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
-//   if (scrollTop + clientHeight >= scrollHeight - 5) {
-//     fetchCards();
-//   }
-// }
+  if (scrollTop + clientHeight >= scrollHeight - 5) {
+    loadCards();
+  }
+}
 
-// window.addEventListener("scroll", handleScroll);
+window.addEventListener("scroll", handleScroll);
+// window.addEventListener("scroll", debounce(handleScroll, DEBOUNCE_DELAY));
