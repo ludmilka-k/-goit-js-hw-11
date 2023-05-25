@@ -61,10 +61,6 @@ ul {
   display: none;
 }
 
-.button > .spinner.is-hidden {
-  display: none;
-}
-
 /* Gallery List */
 .gallery {
   display: grid;

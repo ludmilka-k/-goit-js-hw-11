@@ -3,38 +3,35 @@ export default class LoadMoreBtn {
         hidden: "hidden",
       };
     constructor({ selector, isHidden = false }) {
-      this.btnRefs = this.getBtnRefs(selector),
+      this.button = this.getBtn(selector),
   
       isHidden && this.hide();
     }
   
-    getBtnRefs(selector) {
-      const btnRefs = {};
-      btnRefs.button = document.querySelector(selector);
-    //   btnRefs.button = document.querySelector('.load-more');
-      btnRefs.label = btnRefs.button.querySelector('.label');
-      btnRefs.spinner = btnRefs.button.querySelector('.spinner');
-  
-      return btnRefs;
+    getBtn(selector) {
+        return document.querySelector(selector);
     }
   
     enable() {
-      this.btnRefs.button.disabled = false;
-      this.btnRefs.label.textContent = 'Load more';
-      this.btnRefs.spinner.classList.add('is-hidden');
+      this.button.disabled = false;
+      this.button.textContent = 'Load more';
     }
   
     disable() {
-      this.btnRefs.button.disabled = true;
-      this.btnRefs.label.textContent = 'Loading...';
-      this.btnRefs.spinner.classList.remove('is-hidden');
+      this.button.disabled = true;
+      this.button.textContent = 'Loading...';
     }
   
     show() {
-      this.btnRefs.button.classList.remove('is-hidden');
+      this.button.classList.remove('is-hidden');
     }
   
     hide() {
-      this.btnRefs.button.classList.add('is-hidden');
+      this.button.classList.add('is-hidden');
     }
+
+    end() {
+        this.button.disabled = true;
+        this.button.textContent = "The end!";
+      }
   }

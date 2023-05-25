@@ -1,8 +1,8 @@
 import { BASE_URL, API_KEY } from './data.js'
 
 export default class PixabayApiService {
-  constructor(query) {
-    this.searchQuery = query;
+  constructor() {
+    this.searchQuery = '';
     this.page = 1;
     this.perPage = 40;
   }
@@ -24,6 +24,11 @@ export default class PixabayApiService {
         return {images: hits, totalImages: totalHits, isLastPage, isFirstPage};
       })
       .catch();
+  }
+
+  newQuery(query) {
+    this.searchQuery = query;
+    this.page = 1;
   }
 
   incrementPage() {

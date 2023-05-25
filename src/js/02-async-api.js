@@ -2,8 +2,8 @@ import { BASE_URL, API_KEY } from './data.js';
 import axios from 'axios';
 
 export default class PixabayApiService {
-  constructor(query) {
-    this.searchQuery = query;
+  constructor() {
+    this.searchQuery = '';
     this.page = 1;
     this.perPage = 40;
   }
@@ -20,6 +20,11 @@ export default class PixabayApiService {
       console.log(error);
     }
   }
+  newQuery(query) {
+    this.searchQuery = query;
+    this.page = 1;
+  }
+
   incrementPage() {
     this.page += 1;
   }
