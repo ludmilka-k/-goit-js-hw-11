@@ -80,7 +80,6 @@ function clearCardsContainer() {
 function onFetchError(error) {
   console.error(error);
   Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-  refs.cardsContainer.innerHTML = '<p>Not found!</p>';
 }
 
 function getLightbox() {

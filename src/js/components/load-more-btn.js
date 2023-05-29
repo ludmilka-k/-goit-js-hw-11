@@ -2,27 +2,19 @@ export default class LoadMoreBtn {
     static classes = {
         hidden: "hidden",
       };
-    constructor({ selector, isHidden = false }) {
+    constructor({ selector, isHidden = true }) {
       this.button = this.getBtn(selector),
   
       isHidden && this.hide();
+      this.button.textContent = 'Load more'
     }
   
     getBtn(selector) {
         return document.querySelector(selector);
     }
   
-    enable() {
-      this.button.disabled = false;
-      this.button.textContent = 'Load more';
-    }
-  
-    disable() {
-      this.button.disabled = true;
-      this.button.textContent = 'Loading...';
-    }
-  
     show() {
+      this.button.disabled = false;
       this.button.classList.remove('is-hidden');
     }
   

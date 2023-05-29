@@ -22,20 +22,20 @@ loadMoreBtn.button.addEventListener('click', onLoadMore);
 function onSearch(evn) {
   evn.preventDefault();
   clearCardsContainer()
+  loadMoreBtn.hide();
+
   const query = evn.currentTarget.elements.searchQuery.value.trim();
   if (query === '') {
     return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
   } else {
     pixabayApiService.newQuery(query);
 
-    loadMoreBtn.show();
     clearCardsContainer();
     loadCards().finally(() => refs.searchForm.reset());
   }
 }
 
 function loadCards() {
-  loadMoreBtn.disable();
   return pixabayApiService.fetchCards()
     .then(({ images, totalImages, isLastPage, isFirstPage }) => {
       appendCardsMarkup(images);
@@ -48,9 +48,8 @@ function loadCards() {
       if (isLastPage) {
         Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
         loadMoreBtn.end();
-        // loadMoreBtn.hide();
       } else {
-        loadMoreBtn.enable();
+        loadMoreBtn.show();
       }
     })
     .catch(onFetchError)
@@ -75,7 +74,6 @@ function onFetchError(error) {
   console.error(error);
   Notiflix.Notify.failure(error.message);
   loadMoreBtn.hide();
-  refs.cardsContainer.innerHTML = "<p>Not found!</p>";
 }
 
 function getLightbox() {
